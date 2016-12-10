@@ -20,28 +20,23 @@ local parsefns = {
       tab.type =
 	 line:match("Type = (.+);")
    end,
-
    Position = function (line, tab)
       tab.x, tab.y, tab.z = table.unpack(parsenums(line))
    end,
-
    AABBDimensions = function (line, tab)
       tab.w, tab.h, tab.d = table.unpack(parsenums(line))
    end,
-
    Path = function (line, tab)
       tab.path = parsenums(line)
    end,
 }
 
-return {
-   parse = function (filename)
+return
+   function (data)
       local tab = {}
       local i = 0
-      local file = io.open(filename)
-      local filedata = file:read("a")
 
-      for line in string.gmatch(filedata, "[^\n]+") do
+      for line in string.gmatch(data, "[^\n]+") do
 	 local token = string.match(line, "%g+")
 
 	 if token=="{" then
@@ -60,4 +55,3 @@ return {
 
       return tab
    end
-}
