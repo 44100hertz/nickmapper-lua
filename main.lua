@@ -28,37 +28,33 @@ local surface = cairo.svg_surface_create(
 local cr = cairo.context_create(surface)
 cr:set_line_width(0.25)
 
-local tx = function (v)
-   return v.x - min_x - (v.w and v.w/2 or 0)
-end
-local tz = function (v)
-   return max_z - (v.z - min_z + (v.d and v.d/2 or 0))
-end
-
 for k,v in ipairs(gametable) do
-   local size = 0.5
+   local x,z = v.x-min_x, v.z-min_z
+   local size = 0.25
    if styles[v.type] then
       cr:set_source_rgb(table.unpack(styles[v.type].col))
-      size = styles[v.type].size or 0.5
+      size = styles[v.type].size or 0.25
    else
       cr:set_source_rgb(table.unpack(styles.default.col))
-      print(v.type)
    end
 
    if v.w and v.d then
-      cr:rectangle(tx(v), tz(v), v.w, v.d)
-      cr:stroke()
+      cr:move_to(x, z)
+      cr:line_to(x + v.w, z)
+      cr:line_to(x + v.w, z + v.d)
+      cr:line_to(x, z + v.d)
+      cr:line_to(x, z)
    else
-      cr:arc(tx(v), tz(v), size, 0, 2*math.pi)
-      cr:stroke()
+      cr:arc(x, z, size, 0, 2*math.pi)
    end
+   cr:stroke()
 
    if v.path then
       cr:set_source_rgb(1,0,1,1)
-      local start = {x=v.path[1], z=v.path[3]}
-      cr:move_to(tx(start), tz(start))
-      local fin = {x=v.path[8], z=v.path[10]}
-      cr:line_to(tx(fin), tz(fin))
+      cr:move_to(v.path[1]-min_x, v.path[3]-min_z)
+      for i=8, #v.path, 7 do
+	 cr:line_to(v.path[i]-min_x, v.path[i+2]-min_z)
+      end
       cr:stroke()
    end
 end
