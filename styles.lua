@@ -7,8 +7,6 @@ return {
    ATimmy = {col = {0, 1.0, 0}, size=2},
 
    ARespawnPoint = {col = {1, 1, 0}, size=1},
-
-   APropPlatform = {col = {0.5, 0.5, 0.5}},
    ADeathZone = {col = {1, 0, 0}},
 
    APropTrigger = {col = {0, 0, 1}},
@@ -19,6 +17,9 @@ return {
 
    APropInteractible = {col = {0.5, 0.5, 0}},
    APropDoor = {col = {0, 0.5, 0.5}},
+   APropDoorElectric = {col = {0.5, 0, 0.5}},
+   APropPlatform = {col = {0.5, 0.5, 0.5}},
+   APropShakable = {col = {1, 0.5, 0.5}},
 
    APickupDamageBoost = {col = {1, 0.75, 0}, size=1},
    APickupPower = {col = {1, 0.5, 0}},
@@ -35,7 +36,7 @@ return {
    AWorldSectionVolume = {col = {1.0, 0.5, 1.0}},
    ATeleportBlocker = {col = {1.0, 1.0, 0}},
 
-   ASyndicateGrunt = {col = {0, 0.25, 0}},
-   ASyndicateGruntBomber = {col = {0.25, 0, 0}},
-   AGhostGuard = {col = {0.4, 0, 0}},
+   ASyndicateGrunt = {col = {0, 0.5, 0}},
+   ASyndicateGruntBomber = {col = {0.5, 0, 0}},
+   AGhostGuard = {col = {0.8, 0, 0}},
 }
