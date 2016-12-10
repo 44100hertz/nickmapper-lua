@@ -23,13 +23,15 @@ do
 end
 
 local tx = function (x) return x - min_x end
-local tz = function (z) return z - min_z end
+local tz = function (z) return max_z - z end
 
+local scale = 4
 local surface = cairo.svg_surface_create(
-   "out.svg", max_x-min_x, max_z-min_z
+   "out.svg", (max_x-min_x)*scale, (max_z-min_z)*scale
 )
 local cr = cairo.context_create(surface)
 cr:set_line_width(0.25)
+cr:scale(scale, scale)
 
 for k,v in ipairs(gametable) do
    local x,z = tx(v.x), tz(v.z)
