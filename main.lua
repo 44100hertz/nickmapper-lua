@@ -8,10 +8,10 @@ local min_x, min_z, max_x, max_z = 0,0,0,0
 local points = {}
 
 for k,v in ipairs(gametable) do
-   min_x = math.min(v.x,min_x)
-   min_z = math.min(v.z,min_z)
-   max_x = math.max(v.x + (v.w or 1), max_x)
-   max_z = math.max(v.z + (v.d or 1), max_z)
+   min_x = math.min(v.x, min_x)
+   min_z = math.min(v.z, min_z)
+   max_x = math.max(v.x + (v.w or 0), max_x)
+   max_z = math.max(v.z + (v.d or 0), max_z)
 end
 
 do
@@ -23,16 +23,16 @@ do
 end
 
 local surface = cairo.svg_surface_create(
-   os.time() .. ".svg", max_x-min_x, max_z-min_z
+   "out.svg", max_x-min_x, max_z-min_z
 )
 local cr = cairo.context_create(surface)
-cr:set_line_width(0.5)
+cr:set_line_width(0.25)
 
 local tx = function (v)
    return v.x - min_x - (v.w and v.w/2 or 0)
 end
 local tz = function (v)
-   return v.z - min_z  - (v.d and v.d/2 or 0)
+   return max_z - (v.z - min_z + (v.d and v.d/2 or 0))
 end
 
 for k,v in ipairs(gametable) do
@@ -42,6 +42,7 @@ for k,v in ipairs(gametable) do
       size = styles[v.type].size or 0.5
    else
       cr:set_source_rgb(table.unpack(styles.default.col))
+      print(v.type)
    end
 
    if v.w and v.d then
