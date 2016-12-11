@@ -49,9 +49,22 @@ return
 	       cr:arc(x, z, size, 0, 2*math.pi)
 	    end
 	    cr:stroke()
+
+	    if v.target then
+	       cr:move_to(x, z)
+	       cr:set_source_rgb(1,0.8,0)
+	       for _,targ in ipairs(gametable) do
+		  if targ.name == v.target and
+		     targ.x and targ.z
+		  then
+		     cr:line_to(tx(targ.x), tz(targ.z))
+		  end
+	       end
+	       cr:stroke()
+	    end
 	 end
 	 if v.path then
-	    cr:set_source_rgb(1,0,1,1)
+	    cr:set_source_rgb(1,0,1)
 	    cr:move_to(tx(v.path[1]), tz(v.path[3]))
 	    for i=8, #v.path, 7 do
 	       cr:line_to(tx(v.path[i]), tz(v.path[i+2]))
