@@ -1,0 +1,15 @@
+* What is?
+A Nicktoons: Unite! level parser written in lua
+
+Somewhat hacky...
+I honestly just wanted to get the job done of viewing levels.
+I'll probably make a cleaner implementation in a different lang.
+
+* How do?
+you'll need AwesomeWM/oocairo, plus luafilesystem
+should just run then...it should put the maps into out/
+
+* Future plans?
+spec.org might have them
+I can't draw the level geometry, even if I really want to
+If anyone can tell me what format the .ini's are, that would rock.
