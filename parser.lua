@@ -33,7 +33,14 @@ local parsefns = {
       tab.name = line:match("Name = \"(.+)\"")
    end,
    Target = function (line, tab)
-      tab.target = line:match("Target = \"(.+)\"")
+      tab.target = {}
+      tab.target[1] = line:match("Target = \"(.+)\"")
+   end,
+   ExtraTargets = function (line, tab)
+      for targ in line:gmatch("\"(.+)\"") do
+	 table.insert(tab.target, targ)
+      end
+      if tab.target and #tab.target > 5 then print (tab.name) end
    end,
    Solid = function (line, tab)
       local solid = line:match("Solid = (.+);")
