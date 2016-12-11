@@ -29,6 +29,16 @@ local parsefns = {
    Path = function (line, tab)
       tab.path = parsenums(line)
    end,
+   Name = function (line, tab)
+      tab.name = line:match("Name = \"(.+)\"")
+   end,
+   Target = function (line, tab)
+      tab.target = line:match("Target = \"(.+)\"")
+   end,
+   Solid = function (line, tab)
+      local solid = line:match("Solid = (.+);")
+      tab.solid = solid=="true" and true or false
+   end
 }
 
 return
