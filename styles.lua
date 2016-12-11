@@ -1,5 +1,6 @@
 return {
    default = {col = {0.75, 0.75, 0.75}},
+   solid = {col = {0, 0, 0}},
 
    ABob = {col = {0, 1.0, 0}, size=2},
    ADanny = {col = {0, 1.0, 0}, size=2},

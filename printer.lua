@@ -39,6 +39,8 @@ return
 	    if styles[v.type] then
 	       cr:set_source_rgb(table.unpack(styles[v.type].col))
 	       size = styles[v.type].size or 0.25
+	    elseif v.solid then
+	       cr:set_source_rgb(table.unpack(styles.solid.col))
 	    else
 	       cr:set_source_rgb(table.unpack(styles.default.col))
 	    end
@@ -52,8 +54,11 @@ return
 	    if v.solid then cr:fill() end
 
 	    if v.target then
-	       cr:set_source_rgb(1,0.8,0)
-	       for _,targ in ipairs(v.target) do
+	       for i,targ in ipairs(v.target) do
+		  if i==1 then cr:set_source_rgb(1,0.8,0)
+		  else cr:set_source_rgb(1,1,0)
+		  end
+
 		  cr:move_to(x, z)
 		  for _,obj in ipairs(gametable) do
 		     if obj.name == targ and
