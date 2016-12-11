@@ -6,6 +6,7 @@ local printer = require "printer"
 local paths = {}
 local names = {}
 
+lfs.mkdir("out")
 lfs.chdir("levels")
 for folder in lfs.dir(".") do
    if folder ~= "." and folder ~= ".." then
