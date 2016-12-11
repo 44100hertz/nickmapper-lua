@@ -1,13 +1,12 @@
-* TODO Mininmum
-** TODO Read game XML file
-** TODO Create SVG with some points in the right place
+* DONE Mininmum
+** DONE Read game INI file
+** DONE Create SVG with some points in the right place
 
-* TODO Essential features
-** TODO Draw endboxes, deathboxes
-** TODO Powerup/other locations
+* DONE Essential features
+** DONE Draw endboxes, deathboxes
+** DONE Powerup/other locations
 
 * TODO Fancy stuff
-** TODO Named coords/heights
 ** TODO Isometric 3d drawing
 ** TODO Zooming/panning
 ** TODO Live usage plus UI
