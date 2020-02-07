@@ -55,6 +55,19 @@ local function render_to_svg (entity_list, outfile)
          draw_line_to_actor_named(entity.parent)
       end
 
+      if entity.next_waypoint then
+         cr:set_source_rgb(0.0,0.5,0.0)
+         cr:move_to(entity.x, entity.z)
+         draw_line_to_actor_named(entity.next_waypoint)
+      end
+
+      if entity.respawn_point then
+         cr:set_source_rgb(0.5,0.5,0.3)
+         cr:move_to(entity.x, entity.z)
+         cr:line_to(entity.respawn_point.x, entity.respawn_point.z)
+         cr:stroke()
+      end
+
       if entity.respawn_points then
          cr:set_source_rgb(0.5,0.5,0.5)
          for i,respawn in ipairs(entity.respawn_points) do
@@ -82,10 +95,12 @@ local function render_to_svg (entity_list, outfile)
       cr:set_source_rgb(table.unpack(style.col))
 
       if entity.w and entity.d then
+         cr:move_to(entity.x, entity.z)
          cr:rectangle(entity.x-entity.w/2, entity.z-entity.d/2, entity.w, entity.d)
          cr:stroke()
       else
-         cr:arc(entity.x, entity.z, style.size or styles.default.size, 0, 2*math.pi)
+         cr:move_to(entity.x + style.size, entity.z)
+         cr:arc(entity.x, entity.z, style.size, 0, 2*math.pi)
          cr:stroke()
       end
    end

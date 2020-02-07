@@ -24,6 +24,11 @@ local parsefns = {
    AABBDimensions = function (line, entity)
       entity.w, entity.h, entity.d = table.unpack(parsenums(line))
    end,
+   RespawnPoint = function (line, entity)
+      local t = {}
+      t.x, t.y, t.z = table.unpack(parsenums(line))
+      entity.respawn_point = t
+   end,
    Path = function (line, entity)
       entity.path = parsenums(line)
    end,
@@ -34,15 +39,18 @@ local parsefns = {
       entity.target = {}
       entity.target[1] = line:match("Target = \"(.+)\"")
    end,
-   ExtraTargets = function (line, entity)
-      collect(entity.target, line:gmatch("\"(.-)\""))
-   end,
    ParentName = function (line, entity)
       entity.parent = line:match("ParentName = \"(.+)\"")
    end,
+   NextWaypoint = function (line, entity)
+      entity.next_waypoint = line:match("NextWaypoint = \"(.+)\"")
+   end,
+   ExtraTargets = function (line, entity)
+      collect(entity.target, line:gmatch("\"(.-)\""))
+   end,
    RespawnPoints = function (line, entity)
       entity.respawn_points = collect({}, line:gmatch"\"(.-)\"")
-   end
+   end,
 }
 
 local function parse (data)
