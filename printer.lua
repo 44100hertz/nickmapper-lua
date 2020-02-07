@@ -110,14 +110,16 @@ local function render_to_svg (entity_list, outfile)
       local style = styles[entity.type] or styles.default
       if style.describe then
          local str = entity[style.describe]
-         cr:set_font_size(1)
-         local dim = cr:text_extents(str)
-         cr:set_source_rgb(0,0,0)
-         cr:move_to(entity.x - dim.width / 2, entity.z - dim.height / 2)
-         cr:text_path(str)
-         cr:stroke_preserve()
-         cr:set_source_rgb(1,1,1)
-         cr:fill()
+         if not str:match('NToons Entity Instance%d+') then
+            cr:set_font_size(1)
+            local dim = cr:text_extents(str)
+            cr:set_source_rgb(0,0,0)
+            cr:move_to(entity.x - dim.width / 2, entity.z - dim.height / 2)
+            cr:text_path(str)
+            cr:stroke_preserve()
+            cr:set_source_rgb(1,1,1)
+            cr:fill()
+         end
       end
 
    end
