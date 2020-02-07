@@ -1,6 +1,5 @@
 return {
-   default = {col = {0.75, 0.75, 0.75}},
-   solid = {col = {0, 0, 0}},
+   default = {col = {0.75, 0.75, 0.75}, size = 0.25},
 
    ABob = {col = {0, 1.0, 0}, size=2},
    ADanny = {col = {0, 1.0, 0}, size=2},
@@ -10,9 +9,9 @@ return {
    ARespawnPoint = {col = {1, 1, 0}, size=1},
    ADeathZone = {col = {1, 0, 0}},
 
-   APropTrigger = {col = {0, 0, 1}},
-   APropTriggerSS = {col = {0, 0.5, 1}},
-   APropTriggerEndLevel = {col = {0, 1, 1}},
+   APropTrigger = {col = {0, 0, 1}, describe = 'name'},
+   APropTriggerSS = {col = {0, 0.5, 1}, describe = 'name'},
+   APropTriggerEndLevel = {col = {0, 0, 0}, describe = 'name'},
    AEnemyTrigger = {col = {0.5, 0.5, 1}},
    APropFlyThroughTrigger = {col = {0.5, 0.75, 1}},
 
